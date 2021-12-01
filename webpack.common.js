@@ -51,6 +51,13 @@ const communicationIdentityClient = new  CommunicationIdentityClient(config.conn
         chunkFilename: '[id].css',
       })
    ],
+   output: {
+
+    filename: '[name].bundle.js',
+
+    path: path.resolve(__dirname, 'dist')
+
+  },
    devServer: {
     open: true,
     before: function(app) {
