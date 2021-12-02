@@ -4,6 +4,7 @@ const {
     VideoStreamRenderer,
     LocalVideoStream,
   } = require("@azure/communication-calling");
+  var speechsdk = require("microsoft-cognitiveservices-speech-sdk");
   const {
     AzureCommunicationTokenCredential,
   } = require("@azure/communication-common");
@@ -55,6 +56,8 @@ const {
   initializeCallAgentButton.onclick = async () => {
     try {
       console.log(userAccessToken.value);
+      console.log("transcription called")
+      sttFromMic()
   
       const callClient = new CallClient();
       tokenCredential = new AzureCommunicationTokenCredential(
@@ -341,4 +344,27 @@ const {
     // end the current call
     await call.hangUp();
   });
-  
+
+  async function sttFromMic() {
+    const speechConfig = speechsdk.SpeechConfig.fromSubscription("feba9047021d47d0a79cbb4d431748f0", "eastus")
+    speechConfig.speechRecognitionLanguage = 'en-US';
+    
+    const audioConfig = speechsdk.AudioConfig.fromDefaultMicrophoneInput();
+    const recognizer = new speechsdk.SpeechRecognizer(speechConfig, audioConfig);
+
+    console.log("transcription is active")
+
+    recognizer.recognizeOnceAsync(result => {
+        let displayText;
+        let isError = false;
+        if (result.reason === ResultReason.RecognizedSpeech) {
+            displayText = `Text=${result.text}`
+        } else {
+            isError = true;
+            displayText = 'ERROR: Speech was cancelled or could not be recognized. Ensure your microphone is working properly.';
+        }
+
+        if (!isError) console.log("You:", displayText)
+    });
+  }
+ 
