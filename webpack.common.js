@@ -12,7 +12,7 @@ if(!config || !config.connectionString || config.connectionString.indexOf('endpo
 const communicationIdentityClient = new  CommunicationIdentityClient(config.connectionString);
  module.exports = {
    entry: {
-     app: './src/index.js',
+     app: './client.js',
    },
    module: {
     rules: [
@@ -42,34 +42,32 @@ const communicationIdentityClient = new  CommunicationIdentityClient(config.conn
       }
     ],
   },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js'],
+  },
    plugins: [
      new HtmlWebpackPlugin({
-       title: 'Production',
+       template:"./index.html",
+       baseUrl: '/'
      }),
      new MiniCssExtractPlugin({
         filename: '[name].css',
         chunkFilename: '[id].css',
       })
    ],
-   output: {
-
-    filename: '[name].bundle.js',
-
-    path: path.resolve(__dirname, 'dist')
-
-  },
-   devServer: {
-    open: true,
-    before: function(app) {
-        app.post('/tokens/provisionUser', async (req, res) => {
-            try {
-                let communicationUserId = await communicationIdentityClient.createUser();
-                const tokenResponse = await communicationIdentityClient.issueToken(communicationUserId, ["voip"]);
-                res.json(tokenResponse);
-            } catch (error) {
-                console.error(error);
-            }
-        });
-    }
-   }
+  //  devServer: {
+  //   open: true,
+  //   before: function(app) {
+  //       console.log("hello-----------------------------------")
+  //       // app.post('/tokens/provisionUser', async (req, res) => {
+  //       //     try {
+  //       //         let communicationUserId = await communicationIdentityClient.createUser();
+  //       //         const tokenResponse = await communicationIdentityClient.issueToken(communicationUserId, ["voip"]);
+  //       //         res.json(tokenResponse);
+  //       //     } catch (error) {
+  //       //         console.error(error);
+  //       //     }
+  //       // });
+  //   }
+  //  }
  };
