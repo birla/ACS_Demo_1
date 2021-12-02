@@ -16,9 +16,39 @@
     <title>Azure Communication Services - Calling Web SDK</title>
   </head>
   <body style="background-color: #19405c">
-    <h2 class="text-center mb-5 pb-2 pt-2" style="color: #e5e5e5">
-      Azure Communication Services - Calling Web SDK
-    </h2>
+    <div style="display: flex; justify-content: space-around">
+        <img
+        class=""
+        src="./img/celebal.png"
+        alt="celebal logo"
+        style="height: 4rem; margin: 1.2rem 0rem 0px 0"
+        />
+        <button
+          class="btn btn-dark"
+          style="
+            height: 50px;
+            width: 100px;
+            margin-top: 1.5rem;
+            background-color: #284961;
+            border: 1px solid#E5E5E5;
+          "
+        >
+          <a
+            style="text-decoration: none; color: white"
+            href="https://apps.powerapps.com/play/365abb35-a479-4712-89b5-23cdecb6d151?tenantId=e4e34038-ea1f-4882-b6e8-ccd776459ca0&Screen=IVR"
+            >Home</a
+          >
+        </button>
+      <h2 class="text-center mb-5 pb-2 pt-2" style="color: #e5e5e5">
+        Azure Communication Services - Calling Web SDK
+      </h2>
+      <img
+        class=""
+        src="./img/microsoft.png"
+        alt="microsoft logo"
+        style="height: 4rem; margin: 1.2rem 0rem 0px 0"
+      />
+    </div>
     <div class="" style="margin: 0 4rem">
       <div class="row">
         <div class="col-lg-5 col-12">
@@ -68,7 +98,9 @@
     <div class="" style="margin: 0 4rem">
       <div class="row">
         <div class="col-lg-6">
-          <div style="color: #e5e5e5; margin:1.5rem 0; font-size:18px">Local Video Stream</div>
+          <div style="color: #e5e5e5; margin: 1.5rem 0; font-size: 18px">
+            Local Video Stream
+          </div>
           <div
             style="
               background-color: #112c40;
@@ -102,7 +134,7 @@
                     align-items: center;
                     border: none;
                     height: 40px;
-
+                    cursor: pointer;
                     background-color: #46eb21;
                   "
                 >
@@ -130,7 +162,7 @@
                     display: flex;
                     align-items: center;
                     height: 40px;
-
+                    cursor: pointer;
                     border: none;
                   "
                 >
@@ -152,68 +184,71 @@
                   </svg>
                 </button>
                 <button
-                id="start-video-button"
-                class="btn btn-success m-2"
-                type="button"
-                disabled="true"
-                style="
-                  border-radius: 50%;
-                  background-color: #44cf25;
-                  display: flex;
-                  align-items: center;
-                  height: 40px;
-
-                  border: none;
-                "
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  class="bi bi-camera-video"
-                  viewBox="0 0 16 16"
+                  id="start-video-button"
+                  class="btn btn-success m-2"
+                  type="button"
+                  disabled="true"
+                  style="
+                    border-radius: 50%;
+                    background-color: #44cf25;
+                    display: flex;
+                    align-items: center;
+                    height: 40px;
+                    cursor: pointer;
+                    border: none;
+                  "
                 >
-                  <path
-                    fill-rule="evenodd"
-                    d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556v4.35zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H2z"
-                  />
-                </svg>
-              </button>
-              <button
-                id="stop-video-button"
-                class="btn btn-danger m-2"
-                type="button"
-                disabled="true"
-                style="
-                  border-radius: 50%;
-                  background-color: #de2f26;
-                  display: flex;
-                  align-items: center;
-                  height: 40px;
-                  border: none;
-                "
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  class="bi bi-camera-video-off"
-                  viewBox="0 0 16 16"
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    class="bi bi-camera-video"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556v4.35zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H2z"
+                    />
+                  </svg>
+                </button>
+                <button
+                  id="stop-video-button"
+                  class="btn btn-danger m-2"
+                  type="button"
+                  disabled="true"
+                  style="
+                    border-radius: 50%;
+                    background-color: #de2f26;
+                    display: flex;
+                    align-items: center;
+                    height: 40px;
+                    border: none;
+                    cursor: pointer;
+                  "
                 >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10.961 12.365a1.99 1.99 0 0 0 .522-1.103l3.11 1.382A1 1 0 0 0 16 11.731V4.269a1 1 0 0 0-1.406-.913l-3.111 1.382A2 2 0 0 0 9.5 3H4.272l.714 1H9.5a1 1 0 0 1 1 1v6a1 1 0 0 1-.144.518l.605.847zM1.428 4.18A.999.999 0 0 0 1 5v6a1 1 0 0 0 1 1h5.014l.714 1H2a2 2 0 0 1-2-2V5c0-.675.334-1.272.847-1.634l.58.814zM15 11.73l-3.5-1.555v-4.35L15 4.269v7.462zm-4.407 3.56-10-14 .814-.58 10 14-.814.58z"
-                  />
-                </svg>
-              </button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    class="bi bi-camera-video-off"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10.961 12.365a1.99 1.99 0 0 0 .522-1.103l3.11 1.382A1 1 0 0 0 16 11.731V4.269a1 1 0 0 0-1.406-.913l-3.111 1.382A2 2 0 0 0 9.5 3H4.272l.714 1H9.5a1 1 0 0 1 1 1v6a1 1 0 0 1-.144.518l.605.847zM1.428 4.18A.999.999 0 0 0 1 5v6a1 1 0 0 0 1 1h5.014l.714 1H2a2 2 0 0 1-2-2V5c0-.675.334-1.272.847-1.634l.58.814zM15 11.73l-3.5-1.555v-4.35L15 4.269v7.462zm-4.407 3.56-10-14 .814-.58 10 14-.814.58z"
+                    />
+                  </svg>
+                </button>
               </div>
             </div>
           </div>
         </div>
         <div class="col-lg-6">
-          <div style="color: #e5e5e5; margin:1.5rem 0 ; font-size:18px;">Remote participants' video streams</div>
+          <div style="color: #e5e5e5; margin: 1.5rem 0; font-size: 18px">
+            Remote participants' video streams
+          </div>
           <div
             style="
               background-color: #112c40;
@@ -247,7 +282,7 @@
                   align-items: center;
                   background-color: #44cf25;
                   height: 40px;
-
+                  cursor: pointer;
                   border: none;
                 "
               >
