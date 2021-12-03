@@ -9,6 +9,7 @@ const {
     AzureCommunicationTokenCredential,
   } = require("@azure/communication-common");
   const { AzureLogger, setLogLevel } = require("@azure/logger");
+const { ResultReason } = require("microsoft-cognitiveservices-speech-sdk");
   // Set the log level and output
   setLogLevel("verbose");
   AzureLogger.log = (...args) => {
@@ -58,6 +59,7 @@ const {
       console.log(userAccessToken.value);
       console.log("transcription called")
       sttFromMic()
+      sttFromSpeaker()
   
       const callClient = new CallClient();
       tokenCredential = new AzureCommunicationTokenCredential(
@@ -352,19 +354,92 @@ const {
     const audioConfig = speechsdk.AudioConfig.fromDefaultMicrophoneInput();
     const recognizer = new speechsdk.SpeechRecognizer(speechConfig, audioConfig);
 
-    console.log("transcription is active")
+    console.log("transcription is setting up")
 
-    recognizer.recognizeOnceAsync(result => {
-        let displayText;
-        let isError = false;
-        if (result.reason === ResultReason.RecognizedSpeech) {
-            displayText = `Text=${result.text}`
-        } else {
-            isError = true;
-            displayText = 'ERROR: Speech was cancelled or could not be recognized. Ensure your microphone is working properly.';
-        }
+    recognizer.startContinuousRecognitionAsync(result => {
+      console.log("transcription is active")
+      // let displayText;
+      // let isError = false;
+      // if (result.reason === ResultReason.RecognizedSpeech) {
+      //     displayText = `Text=${result.text}`
+      // } else {
+      //     isError = true;
+      //     displayText = 'ERROR: Speech was cancelled or could not be recognized. Ensure your microphone is working properly.';
+      // }
 
-        if (!isError) console.log("You:", displayText)
-    });
+      // if (!isError) console.log("You:", displayText)
+    })
+
+    recognizer.recognized = (sender, event) => {
+      if (event.result.reason === ResultReason.RecognizedSpeech) {
+        console.log("recognized", event.result.text)
+        return
+      }
+      switch(event.result.reason) {
+        default:
+          console.log("Different reason", event.result)
+      }
+    }
+
+    // recognizer.recognizeOnceAsync(result => {
+    //     let displayText;
+    //     let isError = false;
+    //     if (result.reason === ResultReason.RecognizedSpeech) {
+    //         displayText = `Text=${result.text}`
+    //     } else {
+    //         isError = true;
+    //         displayText = 'ERROR: Speech was cancelled or could not be recognized. Ensure your microphone is working properly.';
+    //     }
+
+    //     if (!isError) console.log("You:", displayText)
+    // });
+  }
+
+  async function sttFromSpeaker() {
+    const speechConfig = speechsdk.SpeechConfig.fromSubscription("feba9047021d47d0a79cbb4d431748f0", "eastus")
+    speechConfig.speechRecognitionLanguage = 'en-US';
+    
+    const audioConfig = speechsdk.AudioConfig.fromDefaultSpeakerOutput();
+    const recognizer = new speechsdk.SpeechRecognizer(speechConfig, audioConfig);
+
+    console.log("transcription is setting up for speaker")
+
+    recognizer.startContinuousRecognitionAsync(result => {
+      console.log("transcription is active for speaker")
+      // let displayText;
+      // let isError = false;
+      // if (result.reason === ResultReason.RecognizedSpeech) {
+      //     displayText = `Text=${result.text}`
+      // } else {
+      //     isError = true;
+      //     displayText = 'ERROR: Speech was cancelled or could not be recognized. Ensure your microphone is working properly.';
+      // }
+
+      // if (!isError) console.log("You:", displayText)
+    })
+
+    recognizer.recognized = (sender, event) => {
+      if (event.result.reason === ResultReason.RecognizedSpeech) {
+        console.log("Speaker:", event.result.text)
+        return
+      }
+      switch(event.result.reason) {
+        default:
+          console.log("Speaker Different reason", event.result)
+      }
+    }
+
+    // recognizer.recognizeOnceAsync(result => {
+    //     let displayText;
+    //     let isError = false;
+    //     if (result.reason === ResultReason.RecognizedSpeech) {
+    //         displayText = `Text=${result.text}`
+    //     } else {
+    //         isError = true;
+    //         displayText = 'ERROR: Speech was cancelled or could not be recognized. Ensure your microphone is working properly.';
+    //     }
+
+    //     if (!isError) console.log("You:", displayText)
+    // });
   }
  
